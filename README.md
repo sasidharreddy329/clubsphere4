@@ -72,28 +72,30 @@ npm run build
 
 GitHub Pages can only host a static frontend version. It cannot run the backend API routes added in this full-stack version.
 
-If you still want a static UI-only export for demo purposes:
+Recommended setup (already configured in this repo):
 
-1. Build and deploy the static export:
+1. Push to `main`.
+2. GitHub Actions runs `.github/workflows/deploy-pages.yml`.
+3. In GitHub repo settings, set Pages to:
+   - Source: `GitHub Actions`
+
+The workflow builds static export (`out/`) with correct `basePath`/`assetPrefix`, adds `.nojekyll`, and deploys it.
+
+Manual fallback (branch deploy):
 
 ```bash
 npm run deploy:pages
 ```
 
-2. In GitHub repository settings, set Pages to:
-   - Source: `Deploy from a branch`
-   - Branch: `gh-pages`
-   - Folder: `/ (root)`
-
-3. Make sure the published branch contains the exported site files at its root, including:
-   - `index.html`
-   - `_next/`
-   - `.nojekyll`
+Then set Pages source to:
+- `Deploy from a branch`
+- Branch: `gh-pages`
+- Folder: `/ (root)`
 
 Important:
 - The GitHub Pages build is frontend-only.
-- The backend APIs, secure sessions, and server-side persistence require a real Next.js host, not GitHub Pages.
-- If Pages shows the repository README instead of the app UI, Pages is usually pointing to the wrong branch or folder.
+- Backend APIs, secure sessions, and server-side persistence require a real Next.js host.
+- If UI is unstyled on Pages, Pages is usually serving source files instead of built `out/` artifacts.
 
 ## Groq Setup
 
