@@ -1,6 +1,6 @@
 import { execSync } from "node:child_process";
 
-const GITHUB_PAGES_REPO = "clubspher3";
+const GITHUB_PAGES_REPO = "clubsphere4";
 
 const getGitHubPagesBasePath = () => {
   if (process.env.STATIC_EXPORT !== "true") return "";
